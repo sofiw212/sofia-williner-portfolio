@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sofia Williner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --mist: #EEF1F4;
+    --ink: #16202A;
+    --ink-soft: #4B5A66;
+    --gold: #B5842A;
+    --gold-soft: #F3E4C4;
+    --teal: #1F6F5C;
+    --line: #DDE2E6;
+    --radius: 3px;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #12181C;
+      --mist: #1B2328;
+      --ink: #ECEFF1;
+      --ink-soft: #A9B6BE;
+      --gold: #E3B94A;
+      --gold-soft: #3A331B;
+      --teal: #4FBFA3;
+      --line: #2B363C;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #12181C;
+    --mist: #1B2328;
+    --ink: #ECEFF1;
+    --ink-soft: #A9B6BE;
+    --gold: #E3B94A;
+    --gold-soft: #3A331B;
+    --teal: #4FBFA3;
+    --line: #2B363C;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--mist) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+  .mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .mark span { color: var(--gold); }
+  nav.links { display: flex; gap: 28px; }
+  nav.links a {
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--ink-soft);
+    transition: color .15s ease;
+  }
+  nav.links a:hover { color: var(--gold); }
+  .nav-toggle { display: none; }
+
+  @media (max-width: 620px) {
+    nav.links {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease;
+    }
+    nav.links.open { max-height: 260px; }
+    nav.links a { padding: 14px 28px; border-top: 1px solid var(--line); }
+    .nav-toggle {
+      display: block;
+      background: none;
+      border: none;
+      color: var(--ink);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px;
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 96px 0 80px;
+  }
+  .eyebrow-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 500;
+    line-height: 1.02;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .hero p.lede {
+    max-width: 54ch;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-top: 26px;
+  }
+  .hero-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 34px;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .fact dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .fact dd {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .fact-list {
+    margin: 0;
+    padding: 0 0 0 16px;
+  }
+  .fact-list li {
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .fact-list li::marker { color: var(--gold); }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section { padding: 76px 0; }
+  section.alt { background: var(--mist); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+  .section-head h2 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+  .section-head .count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+  }
+  .about-grid p { font-size: 17px; color: var(--ink-soft); max-width: 62ch; }
+  .about-grid p + p { margin-top: 16px; }
+  .quickfacts { list-style: none; margin: 0; padding: 0; }
+  .quickfacts li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .quickfacts li:last-child { border-bottom: 1px solid var(--line); }
+  .quickfacts .k {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--teal);
+  }
+  .quickfacts .v { font-size: 15px; }
+
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+  }
+  .project:last-child { padding-bottom: 0; }
+  .project.reverse .art { order: 2; }
+  .project .art {
+    aspect-ratio: 4 / 3;
+    background: var(--mist);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  section.alt .project .art { background: var(--paper); }
+  .project .art svg { width: 100%; height: 100%; overflow: visible; }
+
+  .art:hover svg { transform: scale(1.025); }
+  .art svg { transition: transform .35s ease; }
+
+  .art svg path, .art svg line {
+    transition: stroke-dashoffset 1.1s cubic-bezier(.25,.7,.35,1);
+  }
+  .art svg circle:not(.footstep):not(.signal):not(.query-dot):not(.bubble):not(.flow-dot), .art svg rect {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    transform: scale(.4);
+    transition: opacity .5s ease, transform .5s cubic-bezier(.25,.7,.35,1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .art.in-view svg circle:not(.footstep):not(.signal):not(.query-dot):not(.bubble):not(.flow-dot), .art.in-view svg rect {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .art svg circle:not(.footstep):not(.signal):not(.query-dot):not(.bubble):not(.flow-dot):not(.match-dot):hover, .art svg rect:hover {
+    transform: scale(1.35);
+    cursor: pointer;
+    transition-delay: 0s, 0s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .art svg circle, .art svg rect { opacity: 1; transform: scale(1); }
+    .art:hover svg { transform: none; }
+  }
+
+  /* Enda: running shoe + footsteps */
+  .shoe {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: translate(14px, 120px);
+    transition: transform .3s ease;
+  }
+  .art:hover .shoe {
+    animation: run-shoe 2.6s ease-in-out infinite alternate;
+  }
+  @keyframes run-shoe {
+    0%   { transform: translate(14px, 120px) rotate(-6deg); }
+    25%  { transform: translate(49px, 107px) rotate(5deg); }
+    50%  { transform: translate(84px, 114px) rotate(-6deg); }
+    75%  { transform: translate(119px, 102px) rotate(5deg); }
+    100% { transform: translate(154px, 94px) rotate(-6deg); }
+  }
+  .footstep {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity .3s ease, transform .3s ease;
+    transition-delay: var(--fd, 0s);
+  }
+  .art:hover .footstep { opacity: .55; transform: scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .shoe { animation: none !important; }
+    .footstep { transition: none; }
+  }
+
+  .project .field {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .project h3 { font-size: 25px; font-weight: 500; margin-bottom: 6px; }
+  .project .when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .project ul { margin: 0; padding: 0 0 0 18px; }
+  .project li {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    margin-bottom: 9px;
+  }
+  .stack {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--ink);
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+  }
+  .stack b { color: var(--gold); font-weight: 500; }
+  .report-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+  }
+  .report-link:hover { color: var(--teal); border-color: var(--teal); }
+
+  @media (max-width: 720px) {
+    .project, .project.reverse { grid-template-columns: 1fr; }
+    .project.reverse .art { order: 0; }
+  }
+
+  /* ---------- MORE PROJECTS ---------- */
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .filter-chip {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .filter-chip:hover { border-color: var(--gold); color: var(--ink); }
+  .filter-chip.active {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--mist);
+  }
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .mini-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .mini-card.hidden { display: none; }
+  .mini-field {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .mini-card h3 { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
+  .mini-card p { font-size: 14.5px; color: var(--ink-soft); flex-grow: 1; }
+  .mini-stack {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--line);
+    padding-top: 10px;
+  }
+
+  @media (max-width: 860px) {
+    .mini-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .mini-grid { grid-template-columns: 1fr; }
+    .filters { flex-wrap: wrap; }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+  .tl-item { position: relative; padding-bottom: 34px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -26px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .tl-when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .tl-item h3 { font-size: 18px; font-weight: 500; }
+  .tl-item .org { color: var(--ink-soft); font-size: 15px; }
+  .tl-item p { font-size: 15px; color: var(--ink-soft); margin: 10px 0 0; max-width: 62ch; }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .edu-item:last-child { border-bottom: 1px solid var(--line); }
+  .edu-item h3 { font-size: 19px; font-weight: 500; }
+  .edu-item .prog { color: var(--ink-soft); font-size: 15px; margin-top: 4px; }
+  .edu-item .when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box {
+    text-align: left;
+  }
+  .contact-box h2 { font-size: 40px; font-weight: 500; max-width: 14ch; }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .btn {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn.primary:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .btn:not(.primary):hover { background: var(--mist); }
+
+  footer {
+    padding: 32px 0 48px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }  /* ---------- Enda: radiating match signals ---------- */
+  .match-line { opacity: .55; }
+  .signal {
+    opacity: 0;
+    offset-distance: 0%;
+  }
+  .art:hover .signal {
+    animation: travel-query 1.6s ease-in-out infinite;
+  }
+  .match-text {
+    opacity: 0;
+    transition: opacity .35s ease;
+    transition-delay: 1.15s;
+  }
+  .art:hover .match-text { opacity: 1; }
+
+  /* ---------- Oura Ring: review cards + extracted aspects ---------- */
+  .scan-line {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  .art:hover .scan-line {
+    animation: scan-sweep 1.8s ease-in-out infinite;
+  }
+  @keyframes scan-sweep {
+    0%   { opacity: 0;  transform: translateX(0); }
+    15%  { opacity: .9; }
+    85%  { opacity: .9; }
+    100% { opacity: 0;  transform: translateX(45px); }
+  }
+  .tag {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity .35s ease, transform .35s ease;
+    transition-delay: var(--td, 0s);
+  }
+  .art:hover .tag { opacity: 1; transform: translateX(0); }
+
+  /* ---------- Education & Health: Tableau cross-filter ---------- */
+  .dashboard .panel {
+    transform-box: fill-box; transform-origin: center;
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .dashboard:hover .panel { opacity: .35; }
+  .dashboard .panel:hover { opacity: 1; transform: scale(1.04); }
+
+  /* ---------- Insurance DB: SQL snippet + flowing query dots ---------- */
+  .sql-snippet {
+    opacity: 0;
+    transition: opacity .4s ease;
+  }
+  .art:hover .sql-snippet { opacity: 1; }
+  .conn:hover { stroke-width: 2.5; cursor: pointer; }
+  .query-dot {
+    opacity: 0;
+    offset-distance: 0%;
+  }
+  .art:hover .query-dot {
+    animation: travel-query 1.8s linear infinite;
+  }
+  @keyframes travel-query {
+    0%   { opacity: 0;  offset-distance: 0%; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0;  offset-distance: 100%; }
+  }
+
+  /* ---------- Jai Alai: bubbles, reach pulse, research lens ---------- */
+  .bubble {
+    transform-box: fill-box; transform-origin: center;
+    opacity: 0;
+  }
+  .art:hover .bubble {
+    animation: bubble-rise 2.2s ease-in infinite;
+  }
+  @keyframes bubble-rise {
+    0%   { opacity: 0; transform: translateY(0) scale(.7); }
+    15%  { opacity: .8; }
+    85%  { opacity: .5; }
+    100% { opacity: 0; transform: translateY(-42px) scale(1.1); }
+  }
+  .reach-line {
+    transition: stroke-width .3s ease, opacity .3s ease;
+  }
+  .art:hover .reach-line {
+    animation: reach-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes reach-pulse {
+    0%, 100% { stroke-width: 1.5; opacity: .75; }
+    50%      { stroke-width: 2.6; opacity: 1; }
+  }
+  .flow-line { opacity: .6; }
+  .flow-dot {
+    opacity: 0;
+    offset-distance: 0%;
+  }
+  .art:hover .flow-dot {
+    animation: travel-query 1.6s ease-in-out infinite;
+  }
+  .tick {
+    opacity: 0;
+    transition: opacity .25s ease;
+    transition-delay: var(--td, 0s);
+  }
+  .art:hover .tick { opacity: 1; }
+  .approved {
+    transform-box: fill-box; transform-origin: center;
+    opacity: 0; transform: scale(.5);
+    transition: opacity .3s ease, transform .3s ease;
+    transition-delay: 1.3s;
+  }
+  .art:hover .approved { opacity: 1; transform: scale(1); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a href="#top" class="mark">Sofia<span>.</span>Williner</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('nav.links').classList.toggle('open')">&#9776;</button>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="eyebrow-line reveal">New York, NY. Open to full-time analytics &amp; marketing roles</div>
+    <h1 class="reveal" style="animation-delay:.05s">Sofia Williner<br><em>marketing instinct,</em><br>analytical rigor.</h1>
+    <p class="lede reveal" style="animation-delay:.1s">
+      I'm a dual-master's candidate in Information Technology and Business Analytics at Fordham's Gabelli School of Business, with a background in marketing and advertising. I build things at the intersection of the two: campaigns and creative that are grounded in data, and models that are built to actually inform a decision.
+    </p>
+    <dl class="hero-facts reveal" style="animation-delay:.15s">
+      <div class="fact"><dt>Currently</dt><dd>
+        <ul class="fact-list">
+          <li>Graduate Assistant, Graduate Admissions</li>
+          <li>Graduate Research Assistant, Web Development &amp; Systems Analysis</li>
+        </ul>
+      </dd></div>
+      <div class="fact"><dt>Graduating</dt><dd>May 2027</dd></div>
+      <div class="fact"><dt>Background</dt><dd>Marketing, Advertising &amp; Analytics</dd></div>
+    </dl>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2 style="font-size:32px;font-weight:500;margin-bottom:22px;">About</h2>
+        <p>I started in marketing and advertising, running creative and campaign work across print, video, and digital storefronts. Along the way I kept finding myself more interested in the layer underneath the creative: what the data was actually saying, and why.</p>
+        <p>That's what brought me to Fordham for a dual master's in Information Technology and Business Analytics. Since starting the program, I've worked across Python, SQL, and Tableau to build things ranging from a client-sponsored recommendation platform to a sentiment-analysis pipeline on thousands of real customer reviews. I like projects that sit at the seam between a business question and a technical answer.</p>
+        <p>I moved to the U.S. from Argentina for school, and adapting quickly has been part of how I work ever since: picking up a new tool, a new team, or a new industry without losing momentum. Education has always come first for me, and I take real pride in doing the work properly, whether that means a client presentation, a technical model, or a deadline that doesn't move.</p>
+      </div>
+      <ul class="quickfacts">
+        <li><span class="k">Based in</span><span class="v">New York City</span></li>
+        <li><span class="k">Studying</span><span class="v">MS Information Technology &amp; MS Business Analytics, Fordham</span></li>
+        <li><span class="k">Prior degree</span><span class="v">BA Marketing &amp; Advertising, magna cum laude, Univ. of Tampa</span></li>
+        <li><span class="k">Tools</span><span class="v">Python, SQL, Tableau, PHP/MySQL, Adobe CC</span></li>
+        <li><span class="k">Languages</span><span class="v">English, Spanish, French</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <span class="count">five projects, 2024 – 2026</span>
+      </div>
+
+      <!-- Project 1: Enda -->
+      <div class="project">
+        <div>
+          <span class="field">Web application development, client-sponsored</span>
+          <h3>Enda Community Runner &amp; Shoe Match Platform</h3>
+          <span class="when">Summer 2026</span>
+          <ul>
+            <li>Led requirements gathering for a real client, Enda, a Kenyan footwear company, running a sponsor kickoff and vendor evaluation to define 11 use cases across 3 user roles.</li>
+            <li>Built a three-tier platform that matches individual runners to shoe recommendations based on their running profile, alongside event/RSVP management and a feedback-driven reporting dashboard.</li>
+            <li>Translated a sponsor insight (that long-term community data mattered more than one-off recommendations) into a data model built to scale past a single pilot club.</li>
+          </ul>
+          <div class="stack"><b>Stack:</b> PHP, MySQL, Bootstrap 5, Chart.js</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/enda-platform" target="_blank" rel="noopener">View full report</a>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 200 150" fill="none" class="enda-art">
+            <!-- runner profile card -->
+            <rect x="12" y="20" width="58" height="90" rx="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="41" y="33" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--ink)">RUNNER</text>
+            <text x="20" y="53" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">PACE</text>
+            <text x="20" y="69" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">TERRAIN</text>
+            <text x="20" y="85" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">ARCH</text>
+
+            <!-- shoe profile card -->
+            <rect x="130" y="20" width="58" height="90" rx="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="159" y="33" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--ink)">SHOE</text>
+            <text x="180" y="53" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">CUSHION</text>
+            <text x="180" y="69" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">GRIP</text>
+            <text x="180" y="85" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">SUPPORT</text>
+
+            <!-- matching connections -->
+            <line class="match-line" x1="70" y1="50" x2="130" y2="50" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+            <line class="match-line" x1="70" y1="66" x2="130" y2="66" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+            <line class="match-line" x1="70" y1="82" x2="130" y2="82" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+
+            <circle class="signal" style="offset-path: path('M70,50 L130,50'); animation-delay:0s"  r="2" fill="var(--gold)"/>
+            <circle class="signal" style="offset-path: path('M70,66 L130,66'); animation-delay:.3s" r="2" fill="var(--teal)"/>
+            <circle class="signal" style="offset-path: path('M70,82 L130,82'); animation-delay:.6s" r="2" fill="var(--gold)"/>
+
+            <path class="tick" style="--td:.35s" d="M124,47 l2,2 l4,-4"  stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="tick" style="--td:.65s" d="M124,63 l2,2 l4,-4"  stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="tick" style="--td:.95s" d="M124,79 l2,2 l4,-4"  stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <text class="match-text" x="100" y="132" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--teal)">MATCH FOUND</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Project 2: Oura Ring -->
+      <div class="project reverse">
+        <div>
+          <span class="field">NLP &amp; sentiment analysis</span>
+          <h3>Oura Ring 4 Review Sentiment Analysis</h3>
+          <span class="when">Spring 2026</span>
+          <ul>
+            <li>Approached the project as if commissioned by Oura Health: built a full NLP pipeline (preprocessing, TF-IDF vectorization, sentiment classification, topic modeling) across 4,240 scraped customer reviews to determine which features should carry into the Oura Ring 5.</li>
+            <li>Trained and evaluated four classifiers with class-weighting to correct for imbalance; selected Logistic Regression (F1 = 0.96) for its interpretability in surfacing the exact language driving sentiment.</li>
+            <li>Built an aspect-based sentiment and priority-scoring framework across five product features, translating reviews into a ranked product roadmap: durability as the top fix, battery as a secondary concern, and sleep, comfort, and app experience as strengths worth preserving.</li>
+          </ul>
+          <div class="stack"><b>Stack:</b> Python, Scikit-learn, TF-IDF, LDA Topic Modeling</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/oura-ring-sentiment-analysis" target="_blank" rel="noopener">View full report</a>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 200 150" fill="none">
+            <!-- stack of customer reviews -->
+            <rect x="18" y="52" width="58" height="40" rx="3" fill="var(--paper)" stroke="var(--line)" stroke-width="1" transform="rotate(-6 47 72)"/>
+            <rect x="22" y="46" width="58" height="40" rx="3" fill="var(--paper)" stroke="var(--line)" stroke-width="1" transform="rotate(-2 51 66)"/>
+            <g transform="rotate(3 56 61)">
+              <rect x="27" y="41" width="58" height="40" rx="3" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <line x1="35" y1="52" x2="75" y2="52" stroke="var(--ink-soft)" stroke-width="1.5"/>
+              <line x1="35" y1="60" x2="70" y2="60" stroke="var(--ink-soft)" stroke-width="1.5"/>
+              <line x1="35" y1="68" x2="72" y2="68" stroke="var(--ink-soft)" stroke-width="1.5"/>
+              <line x1="35" y1="76" x2="55" y2="76" stroke="var(--ink-soft)" stroke-width="1.5"/>
+              <line class="scan-line" x1="30" y1="41" x2="30" y2="81" stroke="var(--gold)" stroke-width="1.5"/>
+            </g>
+
+            <!-- extracted aspects, revealed on hover -->
+            <g class="tag" style="--td:0s">
+              <rect x="112" y="16" width="70" height="15" rx="7.5" fill="none" stroke="#B5453B" stroke-width="1.3"/>
+              <text x="147" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="#B5453B">DURABILITY</text>
+            </g>
+            <g class="tag" style="--td:.15s">
+              <rect x="112" y="39" width="54" height="15" rx="7.5" fill="none" stroke="var(--gold)" stroke-width="1.3"/>
+              <text x="139" y="49" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--gold)">BATTERY</text>
+            </g>
+            <g class="tag" style="--td:.3s">
+              <rect x="112" y="62" width="38" height="15" rx="7.5" fill="none" stroke="var(--teal)" stroke-width="1.3"/>
+              <text x="131" y="72" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--teal)">APP</text>
+            </g>
+            <g class="tag" style="--td:.45s">
+              <rect x="112" y="85" width="56" height="15" rx="7.5" fill="none" stroke="var(--teal)" stroke-width="1.3"/>
+              <text x="140" y="95" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--teal)">COMFORT</text>
+            </g>
+            <g class="tag" style="--td:.6s">
+              <rect x="112" y="108" width="44" height="15" rx="7.5" fill="none" stroke="var(--teal)" stroke-width="1.3"/>
+              <text x="134" y="118" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--teal)">SLEEP</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Project 3: Education & Health -->
+      <div class="project">
+        <div>
+          <span class="field">Statistical modeling &amp; data visualization</span>
+          <h3>Education &amp; Health Quality: A Country-Level Analysis</h3>
+          <span class="when">Spring 2026</span>
+          <ul>
+            <li>Designed 20+ Tableau visualizations across 112 countries to test 22 hypotheses linking educational attainment to health outcomes.</li>
+            <li>Built a stratified OLS regression across GDP tiers, isolating youth disengagement (NEET rate) as the strongest predictor of mortality.</li>
+            <li>Applied K-means clustering with PCA across 12 variables, recovering four interpretable global development tiers, offering a data-driven alternative to grouping countries by income alone.</li>
+          </ul>
+          <div class="stack"><b>Stack:</b> Tableau, Python, Regression, K-Means, PCA</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/education-health-tableau" target="_blank" rel="noopener">View full report</a>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 200 150" fill="none" class="dashboard">
+            <!-- toolbar -->
+            <circle cx="14" cy="6" r="1.4" fill="var(--ink-soft)"/>
+            <circle cx="22" cy="6" r="1.4" fill="var(--ink-soft)"/>
+            <circle cx="30" cy="6" r="1.4" fill="var(--ink-soft)"/>
+            <line x1="0" y1="12" x2="200" y2="12" stroke="var(--line)" stroke-width="1"/>
+            <line x1="100" y1="12" x2="100" y2="150" stroke="var(--line)" stroke-width="1"/>
+            <line x1="0" y1="81" x2="200" y2="81" stroke="var(--line)" stroke-width="1"/>
+
+            <!-- panel A: cluster scatter -->
+            <g class="panel">
+              <line x1="12" y1="72" x2="90" y2="22" stroke="var(--ink)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+              <circle cx="70" cy="52" r="2.2" fill="var(--teal)"/>
+              <circle cx="78" cy="60" r="2.2" fill="var(--teal)"/>
+              <circle cx="83" cy="50" r="2.2" fill="var(--teal)"/>
+              <circle cx="52" cy="20" r="2.2" fill="var(--ink-soft)"/>
+              <circle cx="60" cy="28" r="2.2" fill="var(--ink-soft)"/>
+              <circle cx="88" cy="25" r="2.2" fill="var(--ink)" opacity=".6"/>
+              <circle cx="14" cy="68" r="2.2" fill="var(--ink)" opacity=".6"/>
+            </g>
+
+            <!-- panel B: bar chart -->
+            <g class="panel">
+              <rect x="116" y="50" width="9" height="24" fill="var(--gold)"/>
+              <rect x="132" y="34" width="9" height="40" fill="var(--teal)"/>
+              <rect x="148" y="58" width="9" height="16" fill="var(--ink-soft)"/>
+              <rect x="164" y="42" width="9" height="32" fill="var(--gold)"/>
+              <line x1="110" y1="74" x2="188" y2="74" stroke="var(--ink)" stroke-width="1"/>
+            </g>
+
+            <!-- panel C: trend line -->
+            <g class="panel">
+              <polyline points="12,138 30,128 48,118 66,108 84,96" stroke="var(--teal)" stroke-width="1.8" fill="none"/>
+              <circle cx="12" cy="138" r="2" fill="var(--gold)"/>
+              <circle cx="30" cy="128" r="2" fill="var(--gold)"/>
+              <circle cx="48" cy="118" r="2" fill="var(--gold)"/>
+              <circle cx="66" cy="108" r="2" fill="var(--gold)"/>
+              <circle cx="84" cy="96" r="2" fill="var(--gold)"/>
+              <line x1="8" y1="142" x2="90" y2="142" stroke="var(--ink)" stroke-width="1"/>
+            </g>
+
+            <!-- panel D: KPI tile -->
+            <g class="panel">
+              <text x="150" y="120" text-anchor="middle" font-family="Fraunces, serif" font-size="26" font-weight="500" fill="var(--ink)">112</text>
+              <text x="150" y="132" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--ink-soft)">countries</text>
+              <path d="M172,102 l5,-5 l5,5 M177,97 l0,10" stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Project 4: Insurance DB -->
+      <div class="project reverse">
+        <div>
+          <span class="field">Database design &amp; SQL</span>
+          <h3>Insurance Agency Policy Tracking Database</h3>
+          <span class="when">Fall 2025</span>
+          <ul>
+            <li>Designed a normalized relational database from an unstructured business case, modeling 9 entities across conceptual, logical, and normalized forms.</li>
+            <li>Implemented the schema in Oracle APEX via DDL scripts, including primary/foreign key constraints and data validation rules.</li>
+            <li>Authored 9 multi-table JOIN queries answering real operational questions, from agent commission payouts to policy-to-claim relationships and premium payment tracking.</li>
+          </ul>
+          <div class="stack"><b>Stack:</b> SQL, Oracle APEX</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/insurance-agency-database" target="_blank" rel="noopener">View full report</a>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 200 150" fill="none">
+            <text class="sql-snippet" x="10" y="12" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink-soft)">SELECT * FROM POLICY</text>
+            <rect x="20" y="20" width="55" height="34" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <rect x="125" y="20" width="55" height="34" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <rect x="72" y="95" width="55" height="34" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <path class="conn conn-1" d="M75,37 L125,37" stroke="var(--gold)" stroke-width="1.5"/>
+            <path class="conn conn-2" d="M47,54 L90,95" stroke="var(--teal)" stroke-width="1.5"/>
+            <path class="conn conn-3" d="M152,54 L110,95" stroke="var(--teal)" stroke-width="1.5"/>
+            <circle class="query-dot" style="offset-path: path('M75,37 L125,37'); animation-delay:0s"   r="2.2" fill="var(--gold)"/>
+            <circle class="query-dot" style="offset-path: path('M47,54 L90,95'); animation-delay:.3s"   r="2.2" fill="var(--teal)"/>
+            <circle class="query-dot" style="offset-path: path('M152,54 L110,95'); animation-delay:.6s" r="2.2" fill="var(--teal)"/>
+            <rect x="20" y="20" width="55" height="34" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="47.5" y="41" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--ink)">CLIENT</text>
+            <text x="152.5" y="41" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--ink)">AGENT</text>
+            <text x="99.5" y="116" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--ink)">POLICY</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Project 5: Jai Alai / Cigar City -->
+      <div class="project" id="jai-alai">
+        <div>
+          <span class="field">Integrated marketing campaign, direct client work</span>
+          <h3>Jai Alai IPA Brand Campaign, Cigar City Brewing</h3>
+          <span class="when">Spring 2024</span>
+          <ul>
+            <li>Developed a full integrated marketing campaign for Cigar City Brewing's flagship Jai Alai IPA, conducting situation, competitor, and target-market analysis to modernize the brand's positioning and reach new audiences.</li>
+            <li>Built the complete IMC strategy end to end, from creative concepts and media planning to a measurement framework for evaluating effectiveness, over a 16-week engagement with a team of 5.</li>
+            <li>Presented the finished strategy directly to Cigar City's CEO and executive team, who selected it to move forward into real-world implementation discussions.</li>
+          </ul>
+          <div class="stack"><b>Built with:</b> Adobe Illustrator, Photoshop, Brand24, Google Analytics</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/jai-alai-campaign" target="_blank" rel="noopener">View full report</a>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 200 150" fill="none">
+            <!-- research checklist -->
+            <rect x="15" y="15" width="62" height="92" rx="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+            <rect x="34" y="10" width="24" height="9" rx="2" fill="var(--ink)"/>
+
+            <rect x="23" y="30" width="7" height="7" rx="1" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+            <path class="tick" style="--td:0s" d="M24.5,33.5 l1.8,1.8 l3.2,-3.6" stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="35" y="36" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink)">RESEARCH</text>
+
+            <rect x="23" y="49" width="7" height="7" rx="1" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+            <path class="tick" style="--td:.35s" d="M24.5,52.5 l1.8,1.8 l3.2,-3.6" stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="35" y="55" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink)">STRATEGY</text>
+
+            <rect x="23" y="68" width="7" height="7" rx="1" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+            <path class="tick" style="--td:.7s" d="M24.5,71.5 l1.8,1.8 l3.2,-3.6" stroke="var(--teal)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="35" y="74" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink)">CREATIVE</text>
+
+            <rect x="23" y="87" width="7" height="7" rx="1" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>
+            <path class="tick" style="--td:1.05s" d="M24.5,90.5 l1.8,1.8 l3.2,-3.6" stroke="var(--gold)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="35" y="93" font-family="IBM Plex Mono, monospace" font-size="6.5" fill="var(--ink)">LAUNCH</text>
+
+            <!-- flow from research into the creative execution -->
+            <path class="flow-line" d="M80,61 L124,74" stroke="var(--ink-soft)" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <circle class="flow-dot" style="offset-path: path('M80,61 L124,74')" r="2" fill="var(--gold)"/>
+
+            <!-- the beer, the creative deliverable -->
+            <rect x="130" y="55" width="26" height="55" rx="3" fill="var(--gold)"/>
+            <rect x="130" y="55" width="26" height="14" rx="3" fill="var(--ink)" opacity=".25"/>
+            <clipPath id="glass-clip"><rect x="130" y="69" width="26" height="41" rx="2"/></clipPath>
+            <g clip-path="url(#glass-clip)">
+              <circle class="bubble" style="animation-delay:0s"   cx="138" cy="104" r="1.6" fill="var(--paper)"/>
+              <circle class="bubble" style="animation-delay:.5s"  cx="146" cy="106" r="1.2" fill="var(--paper)"/>
+              <circle class="bubble" style="animation-delay:1s"   cx="142" cy="100" r="1.8" fill="var(--paper)"/>
+              <circle class="bubble" style="animation-delay:1.5s" cx="150" cy="102" r="1.3" fill="var(--paper)"/>
+            </g>
+
+            <!-- reach: the campaign going out to its audience -->
+            <path class="reach-line" d="M156 68 C 172 68 172 45 185 40" stroke="var(--teal)" stroke-width="1.5" fill="none"/>
+            <path class="reach-line" d="M156 90 C 175 90 175 108 188 112" stroke="var(--teal)" stroke-width="1.5" fill="none"/>
+            <circle cx="185" cy="40" r="2.6" fill="var(--teal)"/>
+            <circle cx="188" cy="112" r="2.6" fill="var(--teal)"/>
+
+            <!-- CEO-approved badge -->
+            <g class="approved">
+              <circle cx="178" cy="18" r="9" fill="var(--gold)"/>
+              <path d="M173,18 l4,4 l7,-8" stroke="var(--paper)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MORE PROJECTS -->
+  <section id="more-work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>More projects</h2>
+        <span class="count">coursework &amp; creative executions</span>
+      </div>
+
+      <div class="filters">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="analytics">Analytics &amp; Tech</button>
+        <button class="filter-chip" data-filter="marketing">Marketing &amp; Creative</button>
+      </div>
+
+      <div class="mini-grid">
+
+        <article class="mini-card" data-cat="analytics">
+          <div class="mini-field">Machine learning</div>
+          <h3>Movie Rating Prediction Model</h3>
+          <p>An end-to-end regression model predicting IMDb ratings from production, financial, and creative attributes, isolating vote count and genre as the strongest predictors of audience reception.</p>
+          <div class="mini-stack">Python, Scikit-learn, Regression</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/movie-rating-model" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="analytics">
+          <div class="mini-field">SQL</div>
+          <h3>Querying a Healthcare Database</h3>
+          <p>Applied SQL across interconnected physician, patient, visit, and prescription tables, writing queries that combined joins, aggregations, subqueries, and conditional logic to answer real operational questions.</p>
+          <div class="mini-stack">SQL</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/healthcare-db-query" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="analytics">
+          <div class="mini-field">Python coursework</div>
+          <h3>Global Unit Converter</h3>
+          <p>A command-line unit converter built after moving to the U.S., handling length, mass, temperature, and volume conversions with input validation and saved conversion history.</p>
+          <div class="mini-stack">Python</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/python-coursework" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="analytics">
+          <div class="mini-field">Python coursework</div>
+          <h3>Web Scraping &amp; Financial Data Labs</h3>
+          <p>Two labs applying core Python skills to real data: scraping and structuring book data from HTML, and merging, filtering, and visualizing historical stock price trends.</p>
+          <div class="mini-stack">Python, matplotlib</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/python-coursework" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="analytics">
+          <div class="mini-field">Machine learning</div>
+          <h3>ML Coursework Labs</h3>
+          <p>Feature engineering across two different problems: preparing the Titanic dataset for classification, and building geospatial subway-distance features for an NYC Airbnb price model.</p>
+          <div class="mini-stack">Python, Scikit-learn</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/ml-coursework-labs" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="marketing">
+          <div class="mini-field">Print campaign</div>
+          <h3>Patagonia, "For the Planet"</h3>
+          <p>A 3-piece print campaign built around Patagonia's environmental giving pledge, designed for visual impact and brand consistency across ski, cycling, and surf executions.</p>
+          <div class="mini-stack">Illustrator, Photoshop</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/patagonia-campaign" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+        <article class="mini-card" data-cat="marketing">
+          <div class="mini-field">Editorial design</div>
+          <h3>Kosiuko, BAF Week Magazine Cover</h3>
+          <p>A magazine cover spotlighting an Argentine fashion label's presence at Buenos Aires Fashion Week, built with editorial grid principles and strong typographic hierarchy.</p>
+          <div class="mini-stack">Adobe InDesign</div>
+          <a class="report-link" href="https://github.com/sofiw212/sofia-williner-portfolio/tree/main/kosiuko-magazine-cover" target="_blank" rel="noopener">View full report</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENTLY WORKING ON -->
+  <section id="current" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Currently working on</h2>
+        <span class="count">fall 2026</span>
+      </div>
+      <ul class="quickfacts">
+        <li><span class="k">Coursework</span><span class="v">R Statistical Programming — writing on social media privacy</span></li>
+        <li><span class="k">Coursework</span><span class="v">Business Performance Analytics</span></li>
+        <li><span class="k">Coursework</span><span class="v">Mobile Commerce &amp; Applications</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="count">2023 – present</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-when">Sep 2026 – Present</span>
+          <h3>Graduate Research Assistant, Web Development &amp; Systems Analysis</h3>
+          <span class="org">Fordham University, Gabelli School of Business</span>
+          <p>Support faculty across two courses, grading student work and helping build course materials for Web Development and Systems Analysis. Mentor undergraduate students on coursework and technical concepts, and assist with faculty research initiatives tied to both courses.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-when">Jan 2026 – Present</span>
+          <h3>Graduate Assistant, Graduate Admissions</h3>
+          <span class="org">Fordham University, Gabelli School of Business</span>
+          <p>Evaluate graduate applications and interview prospective students as a core member of the admissions review committee. Represent Gabelli at recruiting events, and manage applicant data and tracking systems used to inform outreach strategy.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-when">Jun 2024 – May 2025</span>
+          <h3>Design Tech Specialist</h3>
+          <span class="org">PostcardMania</span>
+          <p>Led end-to-end design workflows across digital storefronts, coordinating with creative directors, project managers, and 50+ freelance developers to keep asset delivery on schedule. Customized and configured marketing materials in Adobe Creative Suite and XMPie uStore/uProduce, maintaining organized libraries for efficient program deployment.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-when">Jan 2024 – May 2024</span>
+          <h3>Advertising Campaign Specialist</h3>
+          <span class="org">Cigar City Brewing, Jai Alai Beer</span>
+          <p>Built a full integrated marketing campaign for Cigar City's flagship Jai Alai IPA as direct client work, using Brand24 and Google Analytics to ground the strategy in real consumer engagement data. Presented the finished campaign to Cigar City's CEO and executive team. See the full case study <a href="#jai-alai">above</a>.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-when">Aug 2023 – Dec 2023</span>
+          <h3>Marketing Intern</h3>
+          <span class="org">EWDesigns Jewelry</span>
+          <p>Assisted in executing marketing campaigns, conducting keyword research and consumer behavior analysis in Google Analytics to test and measure layout effectiveness, while maintaining organized records of assets and store lists to support logistics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="alt" id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Education</h2>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3>Fordham University, Gabelli School of Business</h3>
+          <div class="prog">MS in Information Technology &amp; MS in Business Analytics (dual degree)</div>
+        </div>
+        <div class="when">Expected May 2027</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3>The University of Tampa</h3>
+          <div class="prog">BA in Marketing and Advertising, Magna Cum Laude</div>
+        </div>
+        <div class="when">May 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-box">
+      <h2>Let's talk.</h2>
+      <p class="lede" style="margin-top:16px;">I'm looking for full-time roles in marketing analytics, business analytics, or data-driven marketing, starting in 2027. Reach out. I'd love to talk about how I could help.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:sofiwilliner@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/sofiawilliner" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>&copy; 2026 Sofia Williner</span>
+  <span>New York, NY</span>
+</footer>
+
+<script>
+  // Close mobile nav after clicking a link
+  document.querySelectorAll('nav.links a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('nav.links').classList.remove('open'));
+  });
+
+  // More Projects filter
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.mini-card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
+      });
+    });
+  });
+
+  // Project art: scroll-triggered draw-in
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const artEls = document.querySelectorAll('.project .art');
+
+  if (!reduceMotion) {
+    artEls.forEach(art => {
+      const svg = art.querySelector('svg');
+      if (!svg) return;
+
+      // Prep line/path elements for the draw-in effect
+      svg.querySelectorAll('path, line').forEach(el => {
+        try {
+          const len = el.getTotalLength();
+          el.style.strokeDasharray = len;
+          el.style.strokeDashoffset = len;
+        } catch (e) { /* some line elements may not support getTotalLength in older browsers */ }
+      });
+
+      // Stagger circles/rects
+      svg.querySelectorAll('circle:not(.footstep):not(.signal):not(.query-dot):not(.bubble):not(.flow-dot), rect').forEach((el, i) => {
+        el.style.setProperty('--i', i);
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            art.classList.add('in-view');
+            svg.querySelectorAll('path, line').forEach(el => {
+              el.style.strokeDashoffset = 0;
+            });
+            observer.unobserve(art);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(art);
+    });
+  } else {
+    artEls.forEach(art => art.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>
