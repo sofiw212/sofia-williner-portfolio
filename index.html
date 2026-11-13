@@ -421,7 +421,7 @@
     border-top: 1px dashed var(--line);
     padding-top: 10px;
   }
-  .wip-card { max-width: 640px; background: var(--paper); }
+  .wip-card { max-width: 760px; background: var(--paper); }
   .status-pill {
     align-self: flex-start;
     font-family: 'IBM Plex Mono', monospace;
@@ -435,7 +435,8 @@
   .wip-card h3 { font-size: 22px; }
   .wip-card p { flex-grow: 0; font-size: 15.5px; }
   .wip-card ul { margin: 14px 0 0; padding: 0 0 0 18px; }
-  .wip-card li { font-size: 15px; color: var(--ink-soft); margin-bottom: 7px; }
+  .wip-card li { font-size: 15px; color: var(--ink-soft); margin-bottom: 9px; }
+  .wip-card li strong { color: var(--ink); font-weight: 500; }
 
   @media (max-width: 860px) {
     .mini-grid { grid-template-columns: 1fr 1fr; }
@@ -1072,14 +1073,15 @@
       <article class="mini-card wip-card">
         <span class="status-pill">In progress</span>
         <div class="mini-field">Data automation &amp; analytics</div>
-        <h3>Notice Automation Agent: Demo Build</h3>
-        <p>A demo of the automation agent I built at BA ABOGADOS. Because the real system handles confidential client data, I am rebuilding it end to end on fully synthetic data, so the work can be shown without exposing anything real.</p>
+        <h3>AI-Powered Case Automation &amp; Analytics Platform</h3>
+        <p>A rebuild of the system I designed at BA ABOGADOS, which cut processing time per folio from 4 hours to 20 minutes and scaled into a service for 13 law firms. Because the real system runs on confidential taxpayer data, this demo recreates it end to end on 1,150 synthetic records, from raw multi-firm files to an AI agent and executive dashboards.</p>
         <ul>
-          <li>A Python pipeline that cleans and validates the data</li>
-          <li>Loading the data into Oracle and running the case queries</li>
-          <li>A Tableau dashboard built on top of the results</li>
+          <li><strong>AI agent with modular skills:</strong> automates the full workflow (taxpayer lookup, personalized notices, delivery tracking), with each task built as its own reusable skill</li>
+          <li><strong>Multi-source data pipeline:</strong> standardizes 4 inconsistent file formats into one schema in Python, catching duplicates, invalid tax IDs (check-digit validation) and malformed emails before anything is sent</li>
+          <li><strong>Relational data model:</strong> a normalized Oracle SQL database (taxpayers → cases) with queries for recovery rate, response trends, case aging and repeat debtors</li>
+          <li><strong>Executive dashboard:</strong> Tableau views of debt recovered, response rates by month and an aging breakdown that tells attorneys where to follow up first</li>
         </ul>
-        <div class="mini-stack">Planned stack: Python, Oracle SQL, Tableau. Write-up and code coming to GitHub.</div>
+        <div class="mini-stack">Python · pandas · Oracle SQL · Tableau · AI agents. Real-world results from production; demo runs on synthetic data.</div>
       </article>
     </div>
   </section>
