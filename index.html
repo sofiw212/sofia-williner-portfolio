@@ -421,6 +421,21 @@
     border-top: 1px dashed var(--line);
     padding-top: 10px;
   }
+  .wip-card { max-width: 640px; background: var(--paper); }
+  .status-pill {
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 2px 10px;
+    margin-bottom: 14px;
+  }
+  .wip-card h3 { font-size: 22px; }
+  .wip-card p { flex-grow: 0; font-size: 15.5px; }
+  .wip-card ul { margin: 14px 0 0; padding: 0 0 0 18px; }
+  .wip-card li { font-size: 15px; color: var(--ink-soft); margin-bottom: 7px; }
 
   @media (max-width: 860px) {
     .mini-grid { grid-template-columns: 1fr 1fr; }
@@ -1047,17 +1062,56 @@
     </div>
   </section>
 
+  <!-- IN THE MAKING -->
+  <section id="making" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>In the making</h2>
+        <span class="count">work in progress</span>
+      </div>
+      <article class="mini-card wip-card">
+        <span class="status-pill">In progress</span>
+        <div class="mini-field">Data automation &amp; analytics</div>
+        <h3>Notice Automation Agent: Demo Build</h3>
+        <p>A demo of the automation agent I built at BA ABOGADOS. Because the real system handles confidential client data, I am rebuilding it end to end on fully synthetic data, so the work can be shown without exposing anything real.</p>
+        <ul>
+          <li>A Python pipeline that cleans and validates the data</li>
+          <li>Loading the data into Oracle and running the case queries</li>
+          <li>A Tableau dashboard built on top of the results</li>
+        </ul>
+        <div class="mini-stack">Planned stack: Python, Oracle SQL, Tableau. Write-up and code coming to GitHub.</div>
+      </article>
+    </div>
+  </section>
+
   <!-- CURRENTLY WORKING ON -->
-  <section id="current" class="alt">
+  <section id="current">
     <div class="wrap">
       <div class="section-head">
         <h2>Currently working on</h2>
         <span class="count">fall 2026</span>
       </div>
       <ul class="quickfacts">
-        <li><span class="k">Coursework</span><span class="v">R Statistical Programming (writing on social media privacy)</span></li>
+        <li><span class="k">Coursework</span><span class="v">R Statistical Programming</span></li>
         <li><span class="k">Coursework</span><span class="v">Business Performance Analytics</span></li>
         <li><span class="k">Coursework</span><span class="v">Mobile Commerce &amp; Applications</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COMING UP -->
+  <section id="upcoming" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Coming up</h2>
+        <span class="count">2027</span>
+      </div>
+      <ul class="quickfacts">
+        <li><span class="k">Coursework</span><span class="v">Agentic AI with Copilot (working with the United Nations)</span></li>
+        <li><span class="k">Coursework</span><span class="v">Business Dynamics: Systems Thinking &amp; Simulation</span></li>
+        <li><span class="k">Coursework</span><span class="v">Information Systems Strategy &amp; Management</span></li>
+        <li><span class="k">Coursework</span><span class="v">Project Management</span></li>
+        <li><span class="k">Coursework</span><span class="v">Sports Analytics</span></li>
       </ul>
     </div>
   </section>
